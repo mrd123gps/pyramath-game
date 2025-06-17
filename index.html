@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyramath - Egyptian Arithmetic Practice</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Papyrus:wght@400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="pyramid-bg"></div>
+            <h1 class="title">PYRAMATH</h1>
+            <div class="subtitle">Master Arithmetic with Ancient Wisdom</div>
+            <div class="button-container">
+                <button class="main-button" onclick="selectOperationType('addition')">
+                    <span class="button-icon">➕➖</span>
+                    Addition & Subtraction
+                </button>
+                <button class="main-button" onclick="selectOperationType('multiplication')">
+                    <span class="button-icon">✖️➗</span>
+                    Multiplication & Division
+                </button>
+            </div>
+        </div>
+
+        <!-- Time Limit Selection Screen -->
+        <div id="time-screen" class="screen">
+            <h2 class="screen-title">Choose Your Challenge</h2>
+            <div class="button-container">
+                <button class="time-button" onclick="selectTimeLimit(60)">
+                    <span class="button-icon">⏱️</span>
+                    1 Minute Limit
+                </button>
+                <button class="time-button" onclick="selectTimeLimit(300)">
+                    <span class="button-icon">⏰</span>
+                    5 Minute Limit
+                </button>
+                <button class="time-button" onclick="selectTimeLimit(0)">
+                    <span class="button-icon">♾️</span>
+                    No Time Limit
+                </button>
+            </div>
+            <button class="back-button" onclick="goBack()">← Back</button>
+        </div>
+
+        <!-- Missing Position Selection Screen -->
+        <div id="position-screen" class="screen">
+            <h2 class="screen-title">Which Number is Hidden?</h2>
+            <div class="button-container">
+                <button class="position-button" onclick="selectMissingPosition('top')">
+                    <span class="button-icon">🔺</span>
+                    Top Number Missing
+                </button>
+                <button class="position-button" onclick="selectMissingPosition('bottom')">
+                    <span class="button-icon">🔻</span>
+                    Bottom Number Missing
+                </button>
+                <button class="position-button" onclick="selectMissingPosition('random')">
+                    <span class="button-icon">🎲</span>
+                    Random Position Missing
+                </button>
+            </div>
+            <button class="back-button" onclick="goBack()">← Back</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="timer-container">
+                <div id="timer" class="timer"></div>
+            </div>
+            
+            <div class="game-container">
+                <div class="triangle-container">
+                    <div class="triangle">
+                        <div class="top-number" id="top-number">?</div>
+                        <div class="bottom-numbers">
+                            <div class="bottom-left" id="bottom-left">?</div>
+                            <div class="operation-symbol" id="operation-symbol">+</div>
+                            <div class="bottom-right" id="bottom-right">?</div>
+                        </div>
+                        <div class="equals-symbol">=</div>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <input type="number" id="answer-input" class="answer-input" placeholder="?" autocomplete="off">
+                    <button class="submit-button" onclick="submitAnswer()">Submit</button>
+                </div>
+
+                <div class="feedback-container" id="feedback-container">
+                    <!-- Feedback images and messages will appear here -->
+                </div>
+            </div>
+
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Correct:</span>
+                    <span id="correct-count">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Total:</span>
+                    <span id="total-count">0</span>
+                </div>
+            </div>
+
+            <button class="back-button" onclick="goToMenu()">← Menu</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <h2 class="screen-title">Your Results</h2>
+            <div class="results-container">
+                <div class="result-item">
+                    <span class="result-label">Correct Answers:</span>
+                    <span id="final-correct" class="result-value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Accuracy:</span>
+                    <span id="final-accuracy" class="result-value">0%</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Fastest Answer:</span>
+                    <span id="fastest-time" class="result-value">0.0s</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Slowest Answer:</span>
+                    <span id="slowest-time" class="result-value">0.0s</span>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="main-button" onclick="playAgain()">Play Again</button>
+                <button class="main-button" onclick="goToMenu()">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
