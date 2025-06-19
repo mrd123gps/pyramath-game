@@ -184,8 +184,10 @@ class PyramathGame {
         this.clearFeedback();
         
         // Focus on input
-        document.getElementById('answer-input').value = '';
-        document.getElementById('answer-input').focus();
+        document.getElementById("answer-input").value = "";
+        document.getElementById("answer-input").focus();
+        document.getElementById("answer-input").disabled = false;
+        document.querySelector(".submit-button").disabled = false;
     }
 
     displayProblem() {
@@ -251,6 +253,8 @@ class PyramathGame {
         setTimeout(() => {
             this.generateNewProblem();
         }, 1500);
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector(".submit-button").disabled = true;
     }
 
     handleIncorrectAnswer() {
