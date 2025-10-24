@@ -15,7 +15,7 @@ class PyramathGame {
             attempts: 0,
             gameStarted: false,
             // Mini-game trigger logic
-            targetAnswers: Math.floor(Math.random() * 4) + 3, // 3-6 correct answers
+//            targetAnswers: Math.floor(Math.random() * 4) + 3, // 3-6 correct answers
             correctStreak: 0,
             miniGameUnlocked: false
         };
