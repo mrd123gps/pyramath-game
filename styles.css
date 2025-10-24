@@ -491,3 +491,269 @@ body::before {
     }
 }
 
+
+
+/* Mini-Game Styles */
+.minigame-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.minigame-ui {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+    max-width: 90vw;
+    margin-bottom: 20px;
+    background: rgba(139, 69, 19, 0.9);
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: 3px solid #8B4513;
+}
+
+.minigame-timer-bar {
+    position: relative;
+    width: 200px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.timer-fill {
+    height: 100%;
+    background: #00FF00;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+.timer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.minigame-score, .minigame-high-score {
+    color: #F4E4BC;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#minigame-canvas {
+    border: 4px solid #8B4513;
+    border-radius: 10px;
+    background: #2F1B14;
+    max-width: 90vw;
+    max-height: 60vh;
+}
+
+.minigame-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.control-instructions {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.control-instructions div {
+    background: rgba(139, 69, 19, 0.8);
+    color: #F4E4BC;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    border: 2px solid #8B4513;
+}
+
+/* Mini-Game Unlock Notification */
+.minigame-unlock {
+    text-align: center;
+    background: linear-gradient(145deg, #FFD700, #DAA520);
+    border: 4px solid #8B4513;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    animation: unlockPulse 2s ease-in-out;
+}
+
+.unlock-title {
+    font-family: 'Papyrus', fantasy;
+    font-size: 2rem;
+    color: #8B4513;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.unlock-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #654321;
+    margin-bottom: 5px;
+}
+
+.unlock-name {
+    font-family: 'Papyrus', fantasy;
+    font-size: 1.8rem;
+    color: #8B4513;
+    margin: 15px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.unlock-description {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #654321;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.unlock-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.play-minigame-btn, .skip-minigame-btn {
+    background: linear-gradient(145deg, #228B22, #006400);
+    color: white;
+    border: 3px solid #2F4F2F;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.skip-minigame-btn {
+    background: linear-gradient(145deg, #B8860B, #8B4513);
+    border-color: #654321;
+}
+
+.play-minigame-btn:hover {
+    background: linear-gradient(145deg, #32CD32, #228B22);
+    transform: translateY(-2px);
+}
+
+.skip-minigame-btn:hover {
+    background: linear-gradient(145deg, #DAA520, #B8860B);
+    transform: translateY(-2px);
+}
+
+/* Mini-Game Results */
+.minigame-results {
+    text-align: center;
+    background: linear-gradient(145deg, #4169E1, #1E90FF);
+    border: 4px solid #000080;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    margin: 0 auto;
+    color: white;
+}
+
+.results-title {
+    font-family: 'Papyrus', fantasy;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.results-score {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.results-message {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.continue-quiz-btn {
+    background: linear-gradient(145deg, #DAA520, #B8860B);
+    color: #2F1B14;
+    border: 3px solid #8B4513;
+    border-radius: 12px;
+    padding: 12px 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.continue-quiz-btn:hover {
+    background: linear-gradient(145deg, #F4E4BC, #DAA520);
+    transform: translateY(-2px);
+}
+
+@keyframes unlockPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Responsive adjustments for mini-game */
+@media (max-width: 768px) {
+    .minigame-ui {
+        width: 95vw;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .minigame-timer-bar {
+        width: 150px;
+    }
+    
+    .control-instructions {
+        gap: 15px;
+    }
+    
+    .control-instructions div {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .unlock-title {
+        font-size: 1.5rem;
+    }
+    
+    .unlock-name {
+        font-size: 1.4rem;
+    }
+    
+    .unlock-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .play-minigame-btn, .skip-minigame-btn {
+        width: 200px;
+    }
+}
+

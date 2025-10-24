@@ -13,7 +13,11 @@ class PyramathGame {
             timerInterval: null,
             remainingTime: 0,
             attempts: 0,
-            gameStarted: false
+            gameStarted: false,
+            // Mini-game trigger logic
+            targetAnswers: Math.floor(Math.random() * 4) + 3, // 3-6 correct answers
+            correctStreak: 0,
+            miniGameUnlocked: false
         };
         
         this.initializeEventListeners();
@@ -242,6 +246,7 @@ class PyramathGame {
 
     handleCorrectAnswer() {
         this.gameState.correctAnswers++;
+        this.gameState.correctStreak++;
         
         // Record answer time
         const answerTime = (Date.now() - this.gameState.currentProblem.questionStartTime) / 1000;
@@ -249,15 +254,27 @@ class PyramathGame {
         
         this.showFeedback('correct');
         
-        // Generate new problem after delay
-        setTimeout(() => {
-            this.generateNewProblem();
-        }, 1500);
+        // Check if mini-game should be triggered
+        if (this.gameState.correctStreak >= this.gameState.targetAnswers && !this.gameState.miniGameUnlocked) {
+            this.gameState.miniGameUnlocked = true;
+            // Trigger mini-game after feedback delay
+            setTimeout(() => {
+                this.triggerMiniGame();
+            }, 2000);
+        } else {
+            // Generate new problem after delay
+            setTimeout(() => {
+                this.generateNewProblem();
+            }, 1500);
+        }
+        
         document.getElementById("answer-input").disabled = true;
         document.querySelector(".submit-button").disabled = true;
     }
 
     handleIncorrectAnswer() {
+        this.gameState.correctStreak = 0; // Reset streak on incorrect answer
+        
         if (this.gameState.attempts === 1) {
             this.showFeedback('try-again');
             document.getElementById('answer-input').value = '';
@@ -429,7 +446,7 @@ function playAgain() {
     game.playAgain();
 }
 
-// Initialize game when page loads
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', () => {
     game = new PyramathGame();
 });

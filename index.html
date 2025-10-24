@@ -109,6 +109,32 @@
             <button class="back-button" onclick="goToMenu()">← Menu</button>
         </div>
 
+        <!-- Mini-Game Screen -->
+        <div id="minigame-screen" class="screen">
+            <div class="minigame-container">
+                <div class="minigame-ui">
+                    <div class="minigame-timer-bar">
+                        <div id="minigame-timer-fill" class="timer-fill"></div>
+                        <div class="timer-text">30s</div>
+                    </div>
+                    <div class="minigame-score">
+                        <span>Score: </span><span id="minigame-score">0</span>
+                    </div>
+                    <div class="minigame-high-score">
+                        <span>High Score: </span><span id="minigame-high-score">0</span>
+                    </div>
+                </div>
+                <canvas id="minigame-canvas" width="800" height="600"></canvas>
+                <div class="minigame-controls">
+                    <div class="control-instructions">
+                        <div>← → : Move</div>
+                        <div>↑ : Dash</div>
+                        <div>Space : Jump</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Results Screen -->
         <div id="results-screen" class="screen">
             <h2 class="screen-title">Your Results</h2>
@@ -138,6 +164,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="anubis-gauntlet/minigame.js"></script>
 </body>
 </html>
 
