@@ -244,33 +244,37 @@ class PyramathGame {
         this.updateStats();
     }
 
-    handleCorrectAnswer() {
-        this.gameState.correctAnswers++;
-        this.gameState.correctStreak++;
-        
-        // Record answer time
-        const answerTime = (Date.now() - this.gameState.currentProblem.questionStartTime) / 1000;
-        this.gameState.answerTimes.push(answerTime);
-        
-        this.showFeedback('correct');
-        
-        // Check if mini-game should be triggered
-        if (this.gameState.correctStreak >= this.gameState.targetAnswers && !this.gameState.miniGameUnlocked) {
-            this.gameState.miniGameUnlocked = true;
-            // Trigger mini-game after feedback delay
-            setTimeout(() => {
-                this.triggerMiniGame();
-            }, 2000);
-        } else {
-            // Generate new problem after delay
-            setTimeout(() => {
-                this.generateNewProblem();
-            }, 1500);
-        }
-        
-        document.getElementById("answer-input").disabled = true;
-        document.querySelector(".submit-button").disabled = true;
+   handleCorrectAnswer() {
+    …
+    // ---- NEW CODE -------------------------------------------------
+    // Re-enable the field for the next problem (used in both branches)
+    const enableInput = () => {
+        const input = document.getElementById("answer-input");
+        const btn   = document.querySelector(".submit-button");
+        input.disabled = false;
+        btn.disabled   = false;
+        input.focus();               // <-- keep the cursor ready
+    };
+    // --------------------------------------------------------------
+
+    // Check if mini-game should be triggered
+    if (this.gameState.correctStreak >= this.gameState.targetAnswers && !this.gameState.miniGameUnlocked) {
+        this.gameState.miniGameUnlocked = true;
+        setTimeout(() => {
+            this.triggerMiniGame();   // mini-game will take care of the UI
+        }, 2000);
+    } else {
+        // Generate new problem after delay
+        setTimeout(() => {
+            this.generateNewProblem();
+            enableInput();            // <-- re-enable + focus here
+        }, 1500);
     }
+
+    // (keep the old disable lines – they stop double-submission while feedback shows)
+    document.getElementById("answer-input").disabled = true;
+    document.querySelector(".submit-button").disabled = true;
+}
 
     handleIncorrectAnswer() {
         this.gameState.correctStreak = 0; // Reset streak on incorrect answer
